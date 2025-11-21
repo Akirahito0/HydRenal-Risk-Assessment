@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Info | Kidney Screening</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --bg: #f4f6f8;
+      --card: #fff;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      background: var(--bg);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 720px;
+      width: 100%;
+      background: var(--card);
+      padding: 22px 24px;
+      border-radius: 10px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
+
+    h2, h3 {
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    h2 { text-align: center; }
+
+    form .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    label {
+      font-weight: 600;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input[type="number"], input[type="text"], select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #d1d7dd;
+      border-radius: 8px;
+      font-size: 15px;
+      background: #ffffff;
+    }
+
+    .half { flex: 1 1 48%; min-width: 160px; }
+
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      font-size: 17px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button:hover { background: #0056b3; }
+
+    .message {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .half { flex-basis: 100%; }
+      .container { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>User Information</h2>
+
+    <form id="userForm" novalidate>
+
+      <!-- Risk Score -->
+      <label for="riskScore">Risk assessment from the HydRenal smart water bottle (0 to 1)</label>
+      <input id="riskScore" type="number" min="0" max="1" step="0.01" required />
+
+      <!-- Demographics -->
+      <div class="row">
+        <div class="half">
+          <label for="age">Age</label>
+          <input id="age" type="number" min="1" max="120" required />
+        </div>
+        <div class="half">
+          <label for="gender">Gender</label>
+          <select id="gender" required>
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="half">
+          <label for="height">Height (cm)</label>
+          <input id="height" type="number" required />
+        </div>
+        <div class="half">
+          <label for="weight">Weight (kg)</label>
+          <input id="weight" type="number" required />
+        </div>
+      </div>
+
+      <!-- Kidney Function & Urination -->
+      <h3>Kidney Function & Urination</h3>
+      <label for="urineOutput">Urine output level</label>
+      <select id="urineOutput" required>
+        <option value="">Select</option>
+        <option value="low">Low (Oliguria)</option>
+        <option value="high">High (Polyuria)</option>
+        <option value="normal">Normal</option>
+      </select>
+
+      <label for="urineFreq">How often do you urinate per day?</label>
+      <select id="urineFreq" required>
+        <option value="">Select</option>
+        <option value="1-3">1–3 times</option>
+        <option value="4-6">4–6 times</option>
+        <option value=">6">More than 6 times</option>
+      </select>
+
+      <label for="edema">Do you have swelling in your legs/ankles? (Peripheral edema)</label>
+      <select id="edema" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <!-- Symptoms -->
+      <h3>Symptoms</h3>
+      <label for="fatigue">Do you experience fatigue or muscle cramps?</label>
+      <select id="fatigue" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="tired">Do you get tired easily?</label>
+      <select id="tired" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="nausea">Do you have nausea?</label>
+      <select id="nausea" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="vomiting">Do you vomit frequently?</label>
+      <select id="vomiting" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="breath">Do you experience shortness of breath?</label>
+      <select id="breath" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="cognitive">Have you noticed cognitive decline or difficulty concentrating?</label>
+      <select id="cognitive" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <!-- Medical Conditions -->
+      <h3>Medical Conditions</h3>
+      <label for="anemia">Has a doctor diagnosed you with anemia?</label>
+      <select id="anemia" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="diabetes">Do you have diabetes?</label>
+      <select id="diabetes" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="hypertension">Do you have hypertension or hypotension?</label>
+      <select id="hypertension" required>
+        <option value="">Select</option>
+        <option value="hypertension">Hypertension</option>
+        <option value="hypotension">Hypotension</option>
+        <option value="none">None</option>
+      </select>
+
+      <label for="kidneyInjury">Have you had a previous kidney injury?</label>
+      <select id="kidneyInjury" required>
+        <option value="">Select</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <button type="submit">Confirm</button>
+      <div class="message" id="messageBox"></div>
+    </form>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("userForm");
+      const messageBox = document.getElementById("messageBox");
+
+      function validateFields() {
+        const fields = [...form.querySelectorAll("input, select")];
+        for (const field of fields) {
+          if (field.hasAttribute("required") && field.value === "") {
+            field.focus();
+            return false;
+          }
+        }
+        return true;
+      }
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        messageBox.textContent = "";
+
+        if (!validateFields()) {
+          messageBox.textContent = "⚠ Please fill all required fields.";
+          messageBox.style.color = "red";
+          return;
+        }
+
+        const data = {};
+        [...form.querySelectorAll("input, select")].forEach(el => {
+          data[el.id] = el.value;
+        });
+
+        data.updatedAt = new Date().toISOString();
+
+        localStorage.setItem("kidney_user", JSON.stringify(data));
+
+        messageBox.textContent = "✅ Saved successfully!";
+        messageBox.style.color = "green";
+
+        setTimeout(() => {
+          window.location.href = "dashboard.html";
+        }, 800);
+      });
+    });
+  </script>
+</body>
+</html>
